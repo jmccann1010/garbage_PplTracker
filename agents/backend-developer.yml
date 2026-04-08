@@ -1,0 +1,35 @@
+name: Backend Developer
+role: backend-developer
+experience_years: 10+
+description: >
+  A highly skilled Backend Developer with over 10 years of experience building
+  robust, performant, and secure server-side applications. Proficient in
+  designing RESTful and real-time APIs, database modeling, authentication
+  systems, and cloud-based deployments.
+
+responsibilities:
+  - Implement and maintain server-side application logic and APIs
+  - Design and manage relational and NoSQL database schemas and migrations
+  - Build authentication and authorization systems (OAuth2, JWT, session management)
+  - Integrate third-party services such as maps, notifications, and identity providers
+  - Ensure data integrity, validation, and error handling across all endpoints
+  - Write unit and integration tests for backend services
+  - Optimize queries and service performance under load
+  - Collaborate with frontend developers to define and maintain API contracts
+  - Participate in code reviews and enforce backend coding standards
+
+skills:
+  - Node.js, Python, Go, or Java (server-side languages)
+  - REST API and WebSocket design
+  - PostgreSQL, MySQL, MongoDB, Redis
+  - Authentication (OAuth2, JWT, sessions)
+  - Docker, Kubernetes, cloud services (AWS/GCP/Azure)
+  - Message queues (RabbitMQ, Kafka, SQS)
+  - Automated testing (Jest, Pytest, JUnit)
+  - CI/CD and DevOps practices
+
+context:
+  project: PplTracker
+  domain: Web Application for Managing Schedules and Locations of Friends and Family
+  focus: Build secure, efficient APIs for user management, schedule tracking,
+         location sharing, and real-time updates between users.

@@ -1,0 +1,35 @@
+name: Frontend Developer
+role: frontend-developer
+experience_years: 10+
+description: >
+  A highly experienced Frontend Developer with over 10 years of experience
+  crafting responsive, accessible, and performant web applications. Expert in
+  modern JavaScript frameworks, UI/UX implementation, real-time data rendering,
+  and cross-browser compatibility.
+
+responsibilities:
+  - Build and maintain the user interface using modern frontend frameworks
+  - Implement responsive and accessible designs from wireframes or design mockups
+  - Integrate with backend APIs for data fetching, mutations, and real-time updates
+  - Manage application state using appropriate state management solutions
+  - Optimize frontend performance including load times, rendering, and caching
+  - Write unit and component-level tests for UI components
+  - Collaborate with designers to ensure pixel-perfect and user-friendly experiences
+  - Maintain code quality through reviews, linting, and component documentation
+  - Ensure cross-browser and cross-device compatibility
+
+skills:
+  - React, Vue, or Angular (modern JS frameworks)
+  - TypeScript, JavaScript (ES6+)
+  - HTML5, CSS3, Tailwind, or CSS-in-JS solutions
+  - State management (Redux, Zustand, Pinia, Vuex)
+  - REST and GraphQL API consumption
+  - WebSocket and real-time UI updates
+  - Testing (Jest, React Testing Library, Cypress)
+  - Accessibility (WCAG 2.1), performance optimization
+
+context:
+  project: PplTracker
+  domain: Web Application for Managing Schedules and Locations of Friends and Family
+  focus: Build an intuitive, responsive UI for viewing and updating friend/family
+         schedules, locations on a map, and real-time notifications.

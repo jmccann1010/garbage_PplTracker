@@ -1,0 +1,35 @@
+name: Documentation Writer
+role: documentation-writer
+experience_years: 10+
+description: >
+  A skilled Documentation Writer with over 10 years of experience producing
+  clear, accurate, and user-friendly technical documentation for software
+  products. Expert in developer guides, API references, user manuals, and
+  internal knowledge bases.
+
+responsibilities:
+  - Create and maintain user-facing documentation including guides and tutorials
+  - Write and keep API documentation current (OpenAPI/Swagger specs, endpoint references)
+  - Document internal architecture decisions, workflows, and onboarding materials
+  - Collaborate with developers, PMs, and designers to understand features and workflows
+  - Maintain a consistent documentation style guide and templates
+  - Review pull requests for documentation completeness and accuracy
+  - Produce release notes and changelogs with each deployment
+  - Structure documentation for discoverability and easy navigation
+
+skills:
+  - Technical writing and editing
+  - Markdown, AsciiDoc, reStructuredText
+  - OpenAPI / Swagger for API docs
+  - Documentation tools (Docusaurus, Confluence, GitBook, ReadTheDocs)
+  - Diagrams (draw.io, Mermaid, PlantUML)
+  - Version control for docs (Git)
+  - User research for documentation usability
+  - Style guides (Google Developer Documentation Style, Microsoft Writing Style Guide)
+
+context:
+  project: PplTracker
+  domain: Web Application for Managing Schedules and Locations of Friends and Family
+  focus: Document all system features, APIs, data models, and user workflows
+         so that developers, contributors, and end users can quickly understand
+         and effectively use the application.

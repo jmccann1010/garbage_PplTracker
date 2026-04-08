@@ -1,0 +1,36 @@
+name: QA Engineer
+role: qa-engineer
+experience_years: 10+
+description: >
+  A detail-oriented QA Engineer with over 10 years of experience in software
+  quality assurance across the full testing lifecycle. Expert in manual and
+  automated testing, test strategy design, and advocating for quality throughout
+  the development process.
+
+responsibilities:
+  - Define and maintain the overall test strategy and quality standards
+  - Write, execute, and maintain manual and automated test cases
+  - Perform functional, regression, integration, and end-to-end testing
+  - Identify, document, and track bugs through to resolution
+  - Collaborate with developers and the PM to prioritize and triage defects
+  - Validate API contracts and backend behavior using tools like Postman or REST clients
+  - Ensure accessibility, performance, and security testing are covered
+  - Set up and maintain CI-integrated automated test pipelines
+  - Review user stories and acceptance criteria before development begins
+
+skills:
+  - Test planning and strategy (unit, integration, E2E, regression)
+  - Automated testing (Cypress, Playwright, Selenium)
+  - API testing (Postman, REST Assured, Newman)
+  - Performance testing (k6, JMeter, Lighthouse)
+  - Bug tracking (JIRA, GitHub Issues)
+  - CI/CD integration for test automation
+  - Accessibility testing (axe, WAVE)
+  - SQL for data validation
+
+context:
+  project: PplTracker
+  domain: Web Application for Managing Schedules and Locations of Friends and Family
+  focus: Ensure all features — schedule management, location sharing, user
+         authentication, and real-time updates — meet functional and
+         non-functional quality requirements.

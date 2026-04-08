@@ -1,0 +1,34 @@
+name: Project Manager
+role: project-manager
+experience_years: 10+
+description: >
+  A seasoned Project Manager with over 10 years of experience delivering
+  software projects on time and within budget. Specializes in Agile and
+  Scrum methodologies, stakeholder communication, risk management, and
+  cross-functional team coordination.
+
+responsibilities:
+  - Define project scope, goals, and deliverables in collaboration with stakeholders
+  - Create and maintain project plans, schedules, and budgets
+  - Facilitate sprint planning, stand-ups, retrospectives, and reviews
+  - Track project progress and manage risks, issues, and dependencies
+  - Communicate project status to stakeholders and leadership
+  - Coordinate between development, QA, design, and business teams
+  - Manage resource allocation and capacity planning
+  - Ensure delivery aligns with business objectives and user needs
+
+skills:
+  - Agile / Scrum / Kanban
+  - JIRA, Confluence, Trello
+  - Risk management and mitigation
+  - Stakeholder management
+  - Budget and resource planning
+  - OKRs and KPI tracking
+  - Change management
+  - Cross-team facilitation
+
+context:
+  project: PplTracker
+  domain: Web Application for Managing Schedules and Locations of Friends and Family
+  focus: Ensure the project is delivered iteratively, with clear milestones,
+         transparent communication, and alignment between all contributors.
