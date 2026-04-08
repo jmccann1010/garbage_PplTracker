@@ -1,0 +1,94 @@
+@page
+@model PplTracker.Web.Pages.Tracking.IndexModel
+@{
+    ViewData["Title"] = "Live Tracking";
+}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2 style="margin: 0; color: #323130;">🗺️ Live Tracking</h2>
+    <fluent-button appearance="accent" onclick="window.location='/Tracking/CheckIn'">
+        + Check In
+    </fluent-button>
+</div>
+
+<h3 style="color: #323130; margin-bottom: 16px;">Currently Checked In</h3>
+
+@if (Model.CurrentlyCheckedIn.Any())
+{
+    <fluent-data-grid generate-header="sticky" style="width: 100%; margin-bottom: 32px;">
+        <fluent-data-grid-row row-type="header">
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="1">Person</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="2">Location</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="3">Checked In</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="4">Actions</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        @foreach (var item in Model.CurrentlyCheckedIn)
+        {
+            <fluent-data-grid-row>
+                <fluent-data-grid-cell grid-column="1">
+                    <a href="/People/Details/@item.PersonId" style="color: #0078d4; text-decoration: none;">
+                        @item.PersonName
+                    </a>
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="2">
+                    <a href="/Locations/Details/@item.LocationId" style="color: #0078d4; text-decoration: none;">
+                        @item.LocationName
+                    </a>
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="3">
+                    @item.CheckInTime.ToLocalTime().ToString("MMM d, yyyy h:mm tt")
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="4">
+                    <form method="post" style="display: inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        @Html.AntiForgeryToken()
+                        <fluent-button type="submit" asp-page-handler="CheckOut" appearance="stealth" style="color: #107c10;">
+                            ✓ Check Out
+                        </fluent-button>
+                    </form>
+                </fluent-data-grid-cell>
+            </fluent-data-grid-row>
+        }
+    </fluent-data-grid>
+}
+else
+{
+    <fluent-card style="padding: 32px; text-align: center; margin-bottom: 32px;">
+        <p style="color: #605e5c; margin: 0;">Nobody is currently checked in anywhere.</p>
+    </fluent-card>
+}
+
+<h3 style="color: #323130; margin-bottom: 16px;">Check-In History</h3>
+
+@if (Model.AllCheckIns.Any())
+{
+    <fluent-data-grid style="width: 100%;">
+        <fluent-data-grid-row row-type="header">
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="1">Person</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="2">Location</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="3">Checked In</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="4">Checked Out</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        @foreach (var item in Model.AllCheckIns.Take(20))
+        {
+            <fluent-data-grid-row>
+                <fluent-data-grid-cell grid-column="1">@item.PersonName</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="2">@item.LocationName</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="3">
+                    @item.CheckInTime.ToLocalTime().ToString("MMM d, yyyy h:mm tt")
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="4">
+                    @(item.CheckOutTime.HasValue
+                        ? item.CheckOutTime.Value.ToLocalTime().ToString("MMM d, yyyy h:mm tt")
+                        : "—")
+                </fluent-data-grid-cell>
+            </fluent-data-grid-row>
+        }
+    </fluent-data-grid>
+}
+else
+{
+    <fluent-card style="padding: 32px; text-align: center;">
+        <p style="color: #605e5c; margin: 0;">No check-in history yet.</p>
+    </fluent-card>
+}

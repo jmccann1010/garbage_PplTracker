@@ -1,0 +1,43 @@
+@page "{id:int}"
+@model PplTracker.Web.Pages.People.DetailsModel
+@{
+    ViewData["Title"] = Model.Person?.FullName ?? "Person Details";
+}
+
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+    <fluent-button appearance="stealth" onclick="window.location='/People'">← Back</fluent-button>
+    <h2 style="margin: 0; color: #323130;">Person Details</h2>
+</div>
+
+@if (Model.Person == null)
+{
+    <fluent-message-bar intent="error">Person not found.</fluent-message-bar>
+}
+else
+{
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <fluent-card style="padding: 24px;">
+            <h3 style="margin: 0 0 16px; color: #0078d4;">@Model.Person.FullName</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 8px 0; color: #605e5c; width: 100px;">Email:</td>
+                    <td style="padding: 8px 0;">@(Model.Person.Email ?? "—")</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px 0; color: #605e5c;">Phone:</td>
+                    <td style="padding: 8px 0;">@(Model.Person.Phone ?? "—")</td>
+                </tr>
+                @if (!string.IsNullOrEmpty(Model.Person.Notes))
+                {
+                    <tr>
+                        <td style="padding: 8px 0; color: #605e5c; vertical-align: top;">Notes:</td>
+                        <td style="padding: 8px 0;">@Model.Person.Notes</td>
+                    </tr>
+                }
+            </table>
+            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <fluent-button appearance="accent" onclick="window.location='/People/Edit/@Model.Person.Id'">Edit</fluent-button>
+            </div>
+        </fluent-card>
+    </div>
+}

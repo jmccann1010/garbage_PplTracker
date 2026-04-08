@@ -1,0 +1,36 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #faf9f8;
+    color: #323130;
+    min-height: 100vh;
+}
+
+fluent-design-system-provider {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+fluent-design-system-provider > main {
+    flex: 1;
+}
+
+a {
+    color: #0078d4;
+}

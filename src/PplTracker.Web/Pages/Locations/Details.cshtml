@@ -1,0 +1,65 @@
+@page "{id:int}"
+@model PplTracker.Web.Pages.Locations.DetailsModel
+@{
+    ViewData["Title"] = Model.Location?.Name ?? "Location Details";
+}
+
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+    <fluent-button appearance="stealth" onclick="window.location='/Locations'">← Back</fluent-button>
+    <h2 style="margin: 0; color: #323130;">Location Details</h2>
+</div>
+
+@if (Model.Location == null)
+{
+    <fluent-message-bar intent="error">Location not found.</fluent-message-bar>
+}
+else
+{
+    <fluent-card style="padding: 24px; max-width: 600px;">
+        <h3 style="margin: 0 0 16px; color: #0078d4;">@Model.Location.Name</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+            @if (!string.IsNullOrEmpty(Model.Location.Address))
+            {
+                <tr>
+                    <td style="padding: 8px 0; color: #605e5c; width: 100px;">Address:</td>
+                    <td style="padding: 8px 0;">@Model.Location.Address</td>
+                </tr>
+            }
+            <tr>
+                <td style="padding: 8px 0; color: #605e5c;">City:</td>
+                <td style="padding: 8px 0;">@(Model.Location.City ?? "—")</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 0; color: #605e5c;">State:</td>
+                <td style="padding: 8px 0;">@(Model.Location.State ?? "—")</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 0; color: #605e5c;">Zip Code:</td>
+                <td style="padding: 8px 0;">@(Model.Location.ZipCode ?? "—")</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 0; color: #605e5c;">Country:</td>
+                <td style="padding: 8px 0;">@(Model.Location.Country ?? "—")</td>
+            </tr>
+            @if (Model.Location.Latitude.HasValue || Model.Location.Longitude.HasValue)
+            {
+                <tr>
+                    <td style="padding: 8px 0; color: #605e5c;">Coordinates:</td>
+                    <td style="padding: 8px 0;">
+                        @(Model.Location.Latitude?.ToString("F6") ?? "—"), @(Model.Location.Longitude?.ToString("F6") ?? "—")
+                    </td>
+                </tr>
+            }
+            @if (!string.IsNullOrEmpty(Model.Location.Notes))
+            {
+                <tr>
+                    <td style="padding: 8px 0; color: #605e5c; vertical-align: top;">Notes:</td>
+                    <td style="padding: 8px 0;">@Model.Location.Notes</td>
+                </tr>
+            }
+        </table>
+        <div style="display: flex; gap: 12px; margin-top: 16px;">
+            <fluent-button appearance="accent" onclick="window.location='/Locations/Edit/@Model.Location.Id'">Edit</fluent-button>
+        </div>
+    </fluent-card>
+}

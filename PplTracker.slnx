@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PplTracker.API/PplTracker.API.csproj" />
+    <Project Path="src/PplTracker.Core/PplTracker.Core.csproj" />
+    <Project Path="src/PplTracker.Data/PplTracker.Data.csproj" />
+    <Project Path="src/PplTracker.Web/PplTracker.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PplTracker.Tests/PplTracker.Tests.csproj" />
+  </Folder>
+</Solution>

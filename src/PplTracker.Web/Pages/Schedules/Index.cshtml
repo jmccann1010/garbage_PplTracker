@@ -1,0 +1,73 @@
+@page
+@model PplTracker.Web.Pages.Schedules.IndexModel
+@{
+    ViewData["Title"] = "Schedules";
+}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2 style="margin: 0; color: #323130;">📅 Schedules</h2>
+    <fluent-button appearance="accent" onclick="window.location='/Schedules/Create'">
+        + Add Event
+    </fluent-button>
+</div>
+
+@if (Model.Schedules.Any())
+{
+    <fluent-data-grid generate-header="sticky" style="width: 100%;">
+        <fluent-data-grid-row row-type="header">
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="1">Title</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="2">Person</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="3">Start Time</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="4">Location</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="5">Actions</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        @foreach (var schedule in Model.Schedules)
+        {
+            <fluent-data-grid-row>
+                <fluent-data-grid-cell grid-column="1">@schedule.Title</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="2">
+                    <a href="/People/Details/@schedule.PersonId" style="color: #0078d4; text-decoration: none;">
+                        @schedule.PersonName
+                    </a>
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="3">
+                    @schedule.StartTime.ToLocalTime().ToString("MMM d, yyyy h:mm tt")
+                    @if (schedule.IsAllDay)
+                    {
+                        <fluent-badge>All Day</fluent-badge>
+                    }
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="4">@(schedule.LocationName ?? "—")</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="5">
+                    <fluent-button appearance="stealth" onclick="window.location='/Schedules/Edit/@schedule.Id'">Edit</fluent-button>
+                    <fluent-button appearance="stealth" style="color: #d13438;"
+                        onclick="confirmDelete(@schedule.Id, '@schedule.Title.Replace("'", "\\'")' )">Delete</fluent-button>
+                </fluent-data-grid-cell>
+            </fluent-data-grid-row>
+        }
+    </fluent-data-grid>
+}
+else
+{
+    <fluent-card style="padding: 48px; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 16px;">📅</div>
+        <p style="color: #605e5c; margin-bottom: 16px;">No schedule events yet.</p>
+        <fluent-button appearance="accent" onclick="window.location='/Schedules/Create'">Add Your First Event</fluent-button>
+    </fluent-card>
+}
+
+<form id="deleteForm" method="post" action="/Schedules/Delete">
+    <input type="hidden" name="id" id="deleteId" />
+    @Html.AntiForgeryToken()
+</form>
+
+@section Scripts {
+<script>
+    function confirmDelete(id, name) {
+        if (confirm(`Are you sure you want to delete "${name}"?`)) {
+            document.getElementById('deleteId').value = id;
+            document.getElementById('deleteForm').submit();
+        }
+    }
+</script>
+}

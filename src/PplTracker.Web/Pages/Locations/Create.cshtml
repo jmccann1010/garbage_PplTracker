@@ -1,0 +1,58 @@
+@page
+@model PplTracker.Web.Pages.Locations.CreateModel
+@{
+    ViewData["Title"] = "Add Location";
+}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <fluent-button appearance="stealth" onclick="window.location='/Locations'">← Back</fluent-button>
+        <h2 style="margin: 0; color: #323130;">Add Location</h2>
+    </div>
+
+    <fluent-card style="padding: 24px;">
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <div style="display: grid; gap: 16px;">
+                <fluent-text-field asp-for="Input.Name" required style="width: 100%;">
+                    Name *
+                </fluent-text-field>
+
+                <fluent-text-field asp-for="Input.Address" style="width: 100%;">
+                    Address
+                </fluent-text-field>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <fluent-text-field asp-for="Input.City" style="width: 100%;">City</fluent-text-field>
+                    <fluent-text-field asp-for="Input.State" style="width: 100%;">State</fluent-text-field>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <fluent-text-field asp-for="Input.ZipCode" style="width: 100%;">Zip Code</fluent-text-field>
+                    <fluent-text-field asp-for="Input.Country" style="width: 100%;">Country</fluent-text-field>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <fluent-number-field asp-for="Input.Latitude" style="width: 100%;">Latitude</fluent-number-field>
+                    <fluent-number-field asp-for="Input.Longitude" style="width: 100%;">Longitude</fluent-number-field>
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 4px; font-size: 14px; color: #323130;">Notes</label>
+                    <fluent-text-area asp-for="Input.Notes" style="width: 100%;" rows="4"></fluent-text-area>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <fluent-message-bar intent="error">@Model.ErrorMessage</fluent-message-bar>
+                }
+
+                <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px;">
+                    <fluent-button onclick="window.location='/Locations'">Cancel</fluent-button>
+                    <fluent-button type="submit" appearance="accent">Save Location</fluent-button>
+                </div>
+            </div>
+        </form>
+    </fluent-card>
+</div>

@@ -1,0 +1,59 @@
+@page "{id:int}"
+@model PplTracker.Web.Pages.People.EditModel
+@{
+    ViewData["Title"] = "Edit Person";
+}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <fluent-button appearance="stealth" onclick="window.location='/People'">← Back</fluent-button>
+        <h2 style="margin: 0; color: #323130;">Edit Person</h2>
+    </div>
+
+    @if (Model.IsNotFound)
+    {
+        <fluent-message-bar intent="error">Person not found.</fluent-message-bar>
+    }
+    else
+    {
+        <fluent-card style="padding: 24px;">
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                <div style="display: grid; gap: 16px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <fluent-text-field asp-for="Input.FirstName" required style="width: 100%;">
+                            First Name *
+                        </fluent-text-field>
+                        <fluent-text-field asp-for="Input.LastName" required style="width: 100%;">
+                            Last Name *
+                        </fluent-text-field>
+                    </div>
+
+                    <fluent-text-field asp-for="Input.Email" type="email" style="width: 100%;">
+                        Email
+                    </fluent-text-field>
+
+                    <fluent-text-field asp-for="Input.Phone" style="width: 100%;">
+                        Phone
+                    </fluent-text-field>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 4px; font-size: 14px; color: #323130;">Notes</label>
+                        <fluent-text-area asp-for="Input.Notes" style="width: 100%;" rows="4"></fluent-text-area>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <fluent-message-bar intent="error">@Model.ErrorMessage</fluent-message-bar>
+                    }
+
+                    <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px;">
+                        <fluent-button onclick="window.location='/People'">Cancel</fluent-button>
+                        <fluent-button type="submit" appearance="accent">Save Changes</fluent-button>
+                    </div>
+                </div>
+            </form>
+        </fluent-card>
+    }
+</div>
