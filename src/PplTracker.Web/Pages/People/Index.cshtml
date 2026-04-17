@@ -1,0 +1,85 @@
+@page
+@model PplTracker.Web.Pages.People.IndexModel
+@{
+    ViewData["Title"] = "People";
+}
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2 style="margin: 0; color: #323130;">👤 People</h2>
+    <fluent-button appearance="accent" onclick="window.location='/People/Create'">
+        + Add Person
+    </fluent-button>
+</div>
+
+<fluent-card style="padding: 16px; margin-bottom: 24px;">
+    <form method="get">
+        <div style="display: flex; gap: 12px; align-items: flex-end;">
+            <fluent-text-field name="search" value="@Model.Search" placeholder="Search by name or email..." style="flex: 1;">
+                Search
+            </fluent-text-field>
+            <fluent-button type="submit" appearance="accent">Search</fluent-button>
+            @if (!string.IsNullOrEmpty(Model.Search))
+            {
+                <fluent-button onclick="window.location='/People'">Clear</fluent-button>
+            }
+        </div>
+    </form>
+</fluent-card>
+
+@if (Model.People.Any())
+{
+    <fluent-data-grid generate-header="sticky" style="width: 100%;">
+        <fluent-data-grid-row row-type="header">
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="1">Name</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="2">Email</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="3">Phone</fluent-data-grid-cell>
+            <fluent-data-grid-cell cell-type="columnheader" grid-column="4">Actions</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        @foreach (var person in Model.People)
+        {
+            <fluent-data-grid-row>
+                <fluent-data-grid-cell grid-column="1">
+                    <a href="/People/Details/@person.Id" style="color: #0078d4; text-decoration: none;">
+                        @person.FullName
+                    </a>
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="2">@(person.Email ?? "—")</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="3">@(person.Phone ?? "—")</fluent-data-grid-cell>
+                <fluent-data-grid-cell grid-column="4">
+                    <fluent-button appearance="stealth" onclick="window.location='/People/Edit/@person.Id'">Edit</fluent-button>
+                    <fluent-button appearance="stealth" style="color: #d13438;"
+                        onclick="confirmDelete(@person.Id, '@person.FullName.Replace("'", "\\'")' )">Delete</fluent-button>
+                </fluent-data-grid-cell>
+            </fluent-data-grid-row>
+        }
+    </fluent-data-grid>
+}
+else
+{
+    <fluent-card style="padding: 48px; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 16px;">👤</div>
+        <p style="color: #605e5c; margin-bottom: 16px;">
+            @(string.IsNullOrEmpty(Model.Search) ? "No people added yet." : "No people found matching your search.")
+        </p>
+        @if (string.IsNullOrEmpty(Model.Search))
+        {
+            <fluent-button appearance="accent" onclick="window.location='/People/Create'">Add Your First Person</fluent-button>
+        }
+    </fluent-card>
+}
+
+<form id="deleteForm" method="post" action="/People/Delete">
+    <input type="hidden" name="id" id="deleteId" />
+    @Html.AntiForgeryToken()
+</form>
+
+@section Scripts {
+<script>
+    function confirmDelete(id, name) {
+        if (confirm(`Are you sure you want to delete ${name}?`)) {
+            document.getElementById('deleteId').value = id;
+            document.getElementById('deleteForm').submit();
+        }
+    }
+</script>
+}

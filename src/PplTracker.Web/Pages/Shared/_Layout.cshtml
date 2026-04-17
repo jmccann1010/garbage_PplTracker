@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PplTracker</title>
+    <script type="module" src="https://unpkg.com/@@fluentui/web-components/dist/web-components.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <fluent-design-system-provider use-defaults>
+        <header style="background: #0078d4; color: white; padding: 0 24px;">
+            <div style="display: flex; align-items: center; max-width: 1200px; margin: 0 auto; height: 48px;">
+                <a href="/" style="color: white; text-decoration: none; font-size: 20px; font-weight: 600; margin-right: 32px;">
+                    👥 PplTracker
+                </a>
+                <nav style="display: flex; gap: 8px;">
+                    <fluent-anchor href="/" appearance="lightweight" style="color: white;">Home</fluent-anchor>
+                    <fluent-anchor href="/People" appearance="lightweight" style="color: white;">People</fluent-anchor>
+                    <fluent-anchor href="/Locations" appearance="lightweight" style="color: white;">Locations</fluent-anchor>
+                    <fluent-anchor href="/Schedules" appearance="lightweight" style="color: white;">Schedules</fluent-anchor>
+                    <fluent-anchor href="/Tracking" appearance="lightweight" style="color: white;">Live Tracking</fluent-anchor>
+                </nav>
+            </div>
+        </header>
+
+        <main style="max-width: 1200px; margin: 24px auto; padding: 0 24px;">
+            @RenderBody()
+        </main>
+
+        <footer style="border-top: 1px solid #edebe9; margin-top: 48px; padding: 16px 24px; text-align: center; color: #605e5c;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                &copy; 2026 PplTracker &mdash; Managing Schedules and Locations of Friends and Family
+            </div>
+        </footer>
+    </fluent-design-system-provider>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

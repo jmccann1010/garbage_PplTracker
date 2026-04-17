@@ -1,0 +1,42 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div style="text-align: center; padding: 48px 0;">
+    <h1 style="font-size: 2.5rem; font-weight: 700; color: #323130; margin-bottom: 16px;">👥 PplTracker</h1>
+    <p style="font-size: 1.2rem; color: #605e5c; margin-bottom: 48px;">
+        Manage Schedules and Locations of Friends and Family
+    </p>
+
+    <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;">
+        <fluent-card style="width: 220px; padding: 24px; text-align: center; cursor: pointer;" onclick="window.location='/People'">
+            <div style="font-size: 3rem; margin-bottom: 12px;">👤</div>
+            <h3 style="margin: 0 0 8px; color: #0078d4;">People</h3>
+            <p style="margin: 0; color: #605e5c; font-size: 0.9rem;">Track friends and family members</p>
+            <fluent-button appearance="accent" style="margin-top: 16px;" onclick="window.location='/People'">Manage</fluent-button>
+        </fluent-card>
+
+        <fluent-card style="width: 220px; padding: 24px; text-align: center; cursor: pointer;" onclick="window.location='/Locations'">
+            <div style="font-size: 3rem; margin-bottom: 12px;">📍</div>
+            <h3 style="margin: 0 0 8px; color: #0078d4;">Locations</h3>
+            <p style="margin: 0; color: #605e5c; font-size: 0.9rem;">Manage places and venues</p>
+            <fluent-button appearance="accent" style="margin-top: 16px;" onclick="window.location='/Locations'">Manage</fluent-button>
+        </fluent-card>
+
+        <fluent-card style="width: 220px; padding: 24px; text-align: center; cursor: pointer;" onclick="window.location='/Schedules'">
+            <div style="font-size: 3rem; margin-bottom: 12px;">📅</div>
+            <h3 style="margin: 0 0 8px; color: #0078d4;">Schedules</h3>
+            <p style="margin: 0; color: #605e5c; font-size: 0.9rem;">View and create events</p>
+            <fluent-button appearance="accent" style="margin-top: 16px;" onclick="window.location='/Schedules'">Manage</fluent-button>
+        </fluent-card>
+
+        <fluent-card style="width: 220px; padding: 24px; text-align: center; cursor: pointer;" onclick="window.location='/Tracking'">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🗺️</div>
+            <h3 style="margin: 0 0 8px; color: #0078d4;">Live Tracking</h3>
+            <p style="margin: 0; color: #605e5c; font-size: 0.9rem;">See who's where right now</p>
+            <fluent-button appearance="accent" style="margin-top: 16px;" onclick="window.location='/Tracking'">View</fluent-button>
+        </fluent-card>
+    </div>
+</div>

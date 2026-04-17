@@ -1,0 +1,75 @@
+@page "{id:int}"
+@model PplTracker.Web.Pages.Schedules.EditModel
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<div style="max-width: 600px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <fluent-button appearance="stealth" onclick="window.location='/Schedules'">← Back</fluent-button>
+        <h2 style="margin: 0; color: #323130;">Edit Event</h2>
+    </div>
+
+    @if (Model.IsNotFound)
+    {
+        <fluent-message-bar intent="error">Event not found.</fluent-message-bar>
+    }
+    else
+    {
+        <fluent-card style="padding: 24px;">
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                <div style="display: grid; gap: 16px;">
+                    <fluent-text-field asp-for="Input.Title" required style="width: 100%;">
+                        Title *
+                    </fluent-text-field>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 4px; font-size: 14px; color: #323130;">Description</label>
+                        <fluent-text-area asp-for="Input.Description" style="width: 100%;" rows="3"></fluent-text-area>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 4px; font-size: 14px; color: #323130;">Person *</label>
+                        <select asp-for="Input.PersonId" asp-items="Model.PeopleOptions"
+                                style="width: 100%; padding: 8px; border: 1px solid #8a8886; border-radius: 2px; font-size: 14px;">
+                            <option value="">Select a person...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="display: block; margin-bottom: 4px; font-size: 14px; color: #323130;">Location</label>
+                        <select asp-for="Input.LocationId" asp-items="Model.LocationsOptions"
+                                style="width: 100%; padding: 8px; border: 1px solid #8a8886; border-radius: 2px; font-size: 14px;">
+                            <option value="">No location</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <fluent-text-field asp-for="Input.StartTime" type="datetime-local" required style="width: 100%;">
+                            Start Time *
+                        </fluent-text-field>
+                        <fluent-text-field asp-for="Input.EndTime" type="datetime-local" style="width: 100%;">
+                            End Time
+                        </fluent-text-field>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <fluent-checkbox asp-for="Input.IsAllDay">All Day Event</fluent-checkbox>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <fluent-message-bar intent="error">@Model.ErrorMessage</fluent-message-bar>
+                    }
+
+                    <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px;">
+                        <fluent-button onclick="window.location='/Schedules'">Cancel</fluent-button>
+                        <fluent-button type="submit" appearance="accent">Save Changes</fluent-button>
+                    </div>
+                </div>
+            </form>
+        </fluent-card>
+    }
+</div>
